@@ -2,14 +2,14 @@
 
 for ($p = 1; $p <= 12; $p++) {
   $id_situacaoreal = $_POST['id_situacaoreal_' . $p];
-    
-  $hora_inicio = isset($_POST['hora_inicio_' . $p]) ? $_POST['hora_inicio_' . $p] : '00:00:00';
-  
-  $hora_fim = isset($_POST['hora_fim_' . $p]) ? $_POST['hora_fim_' . $p] : '00:00:00';
 
-  $sql = "UPDATE situacaoreal SET `hora_inicio`='$hora_inicio', `hora_fim`='$hora_fim' WHERE `id_situacaoreal`='$id_situacaoreal' ";
-  
+  $hora1 = isset($_POST['hora1_' . $p]) ? $_POST['hora1_' . $p] : '00:00:00';
+  $hora2 = isset($_POST['hora2_' . $p]) ? $_POST['hora2_' . $p] : '00:00:00';
+  $hora3 = isset($_POST['hora3_' . $p]) ? $_POST['hora3_' . $p] : '00:00:00';
+  $hora4 = isset($_POST['hora4_' . $p]) ? $_POST['hora4_' . $p] : '00:00:00';
 
+  $sql = "UPDATE situacaoreal SET `hora_1`='$hora1', `hora_2`='$hora2', `hora_3`='$hora3', `hora_4`='$hora4' WHERE `id_situacaoreal`='$id_situacaoreal' ";
+  
  if ($conn->query($sql) !== TRUE){
     echo "Erro: ".$conn->error;
     die;
@@ -35,6 +35,6 @@ if (($conn->query($sql_update_medenf) !== TRUE)
  echo "Erro: ".$conn->error; 
  die;
 } else {
-  header('location: /aula/?message=Alteração realizada com sucesso!');
+  header('location: /susconnect/?message=Alteração realizada com sucesso!');
   die;
 }

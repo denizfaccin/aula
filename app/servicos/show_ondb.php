@@ -4,7 +4,8 @@ $id_unidade = isset($_GET['id_unidade']) ? (int) $_GET['id_unidade'] : 0;
 $data = isset($_GET['data']) ? $_GET['data'] : 0;
 
 // serviços e horários da tabela situacaoreal
-$sql = "SELECT `id_situacaoreal`, `data`, `nome_unidade`, `nome_servico`, date_format(`hora_inicio`, '%H:%m') AS `hora_inicio`, date_format(`hora_fim`, '%H:%m') AS `hora_fim` 
+$sql = "SELECT `id_situacaoreal`, `data`, `unidade`, `nome_unidade`, `nome_servico`, date_format(`hora_1`, '%H:%m') AS `hora_1`, date_format(`hora_4`, '%H:%m') AS `hora_4`,
+                                                                                     date_format(`hora_2`, '%H:%m') AS `hora_2`, date_format(`hora_3`, '%H:%m') AS `hora_3`
         FROM `situacaoreal` 
         INNER JOIN unidade ON unidade.id_unidade = situacaoreal.unidade 
         INNER JOIN servico ON servico.id_servico = situacaoreal.servico
