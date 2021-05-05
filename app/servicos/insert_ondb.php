@@ -3,7 +3,6 @@
 // Depurar variável
 // print_r($_POST);
 
-
 $id_unidade = $_POST["id_unidade"];
 $data = $_POST["data"];
 $hora1_1 = $_POST["hora1_1"]; $hora2_1 = $_POST["hora2_1"]; $hora3_1 = $_POST["hora3_1"]; $hora4_1 = $_POST["hora4_1"];
@@ -19,10 +18,39 @@ $hora1_10 = $_POST["hora1_10"]; $hora2_10 = $_POST["hora2_10"]; $hora3_10 = $_PO
 $hora1_11 = $_POST["hora1_11"]; $hora2_11 = $_POST["hora2_11"]; $hora3_11 = $_POST["hora3_11"]; $hora4_11 = $_POST["hora4_11"];
 $hora1_12 = $_POST["hora1_12"]; $hora2_12 = $_POST["hora2_12"]; $hora3_12 = $_POST["hora3_12"]; $hora4_12 = $_POST["hora4_12"];
 
-//$alosaude_med_enf = $_POST["alosaude_med_enf"];
-//$alosaude_odonto = $_POST["alosaude_odonto"];
+$alosaude_med_enf = $_POST["alosaude_med_enf"];
+$alosaude_odonto = $_POST["alosaude_odonto"];
 //$observacoes = $_POST["observacoes"];
 
+$sql1 = "UPDATE situacaoreal 
+         SET `hora_1` = '$hora1_1', `hora_2` = '$hora2_1', `hora_3` = '$hora3_1', `hora_4` = '$hora4_1',
+             `hora_1` = '$hora1_2', `hora_2` = '$hora2_2', `hora_3` = '$hora3_2', `hora_4` = '$hora4_2',
+             `hora_1` = '$hora1_3', `hora_2` = '$hora2_3', `hora_3` = '$hora3_3', `hora_4` = '$hora4_3',
+             `hora_1` = '$hora1_4', `hora_2` = '$hora2_4', `hora_3` = '$hora3_4', `hora_4` = '$hora4_4',
+             `hora_1` = '$hora1_5', `hora_2` = '$hora2_5', `hora_3` = '$hora3_5', `hora_4` = '$hora4_5',
+             `hora_1` = '$hora1_6', `hora_2` = '$hora2_6', `hora_3` = '$hora3_6', `hora_4` = '$hora4_6',
+             `hora_1` = '$hora1_7', `hora_2` = '$hora2_7', `hora_3` = '$hora3_7', `hora_4` = '$hora4_7',
+             `hora_1` = '$hora1_8', `hora_2` = '$hora2_8', `hora_3` = '$hora3_8', `hora_4` = '$hora4_8',
+             `hora_1` = '$hora1_9', `hora_2` = '$hora2_9', `hora_3` = '$hora3_9', `hora_4` = '$hora4_9',
+             `hora_1` = '$hora1_10', `hora_2` = '$hora2_10', `hora_3` = '$hora3_10', `hora_4` = '$hora4_10',
+             `hora_1` = '$hora1_11', `hora_2` = '$hora2_11', `hora_3` = '$hora3_11', `hora_4` = '$hora4_11',
+             `hora_1` = '$hora1_12', `hora_2` = '$hora2_12', `hora_3` = '$hora3_12', `hora_4` = '$hora4_12'
+         WHERE `data` >= '$data' AND `unidade` = '$id_unidade' AND `ocorrencia` = 0";
+
+
+if ($conn->query($sql1) === TRUE) {
+    header('location: /susconnect/?message=Cadastro realizado com sucesso!');
+    die;
+}   else {    
+    echo "Error: " . $sql1 . "<br>" . $conn->error;
+}
+
+
+
+// sintaxe updte: $sql_update_medenf = "UPDATE situacaoreal_alosaude SET `vaga_med_enf`='$vaga_med_enf' WHERE `id_situacaoreal_alosaude`='$id_vaga_med_enf' ";
+
+
+/*
 $sql1 = "INSERT INTO situacaopadrao (`unidade`, `data_inicial`, `servico`, `hora_1`, `hora_2`, `hora_3`, `hora_4`) VALUES ('$id_unidade', '$data', '1', '$hora1_1', '$hora2_1', '$hora3_1', '$hora4_1')";
 $sql2 = "INSERT INTO situacaopadrao (`unidade`, `data_inicial`, `servico`, `hora_1`, `hora_2`, `hora_3`, `hora_4`) VALUES ('$id_unidade', '$data', '2', '$hora1_2', '$hora2_2', '$hora3_2', '$hora4_2')";
 $sql3 = "INSERT INTO situacaopadrao (`unidade`, `data_inicial`, `servico`, `hora_1`, `hora_2`, `hora_3`, `hora_4`) VALUES ('$id_unidade', '$data', '3', '$hora1_3', '$hora2_3', '$hora3_3', '$hora4_3')";
@@ -58,6 +86,9 @@ if (($conn->query($sql1) === TRUE)
 }   else {    
     echo "Error: " . $sql1 . "<br>" . $conn->error;
 }
+*/
+
+
 
 $conn->close();
 
