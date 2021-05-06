@@ -48,20 +48,19 @@ while ($row_servico = $result_servico->fetch_assoc()){
             </select>
         </div>
     <div>
+    
+    <div style="padding-top: 10px"></div>
         
-    <!-- Selecionar data -->
+    <!-- Selecionar data / BLOQUEADO EM 'HOJE' PARA EVITAR INCONSISTÊNCIA -->
     <div class="row">
         <div class="col-12">
-            <span>Alterar o horário padrão a partir de:</span>
-            <input id="data" type="date" name="data">
+            <span><strong>Alterar o horário padrão a partir de:</strong></span><span id="show_data"><?php echo date('d/m/Y');?></span>
+            <input id="data" type="hidden" name="data" value="<?php echo date('d-m-Y');?>">
         </div>          
     </div> 
 
     <!-- Exibir informações de select_padrao.php, exibir. -->
     <?php if (mysqli_num_rows($padrao) !== 0) { ?>
-
-    
-    
 
     <!-- Inicia looping 12 serviços, CONTADOR $N -->
     <?php $n=0; ?>

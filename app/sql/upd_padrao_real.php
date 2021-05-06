@@ -3,8 +3,9 @@
 $id_unidade = $_POST["id_unidade"];
 $data = $_POST["data"];
 
-// (hora) - (h1 a h4) - (serviço)
+// VARIÁVEIS --> (hora) - (h1 a h4) - (serviço)
 
+// VAVIÁVEIS HORA 1
 $hora1_1 = $_POST["hora1_1"];   
 $hora1_2 = $_POST["hora1_2"];   
 $hora1_3 = $_POST["hora1_3"];   
@@ -18,6 +19,7 @@ $hora1_10 = $_POST["hora1_10"];
 $hora1_11 = $_POST["hora1_11"]; 
 $hora1_12 = $_POST["hora1_12"]; 
 
+// VARIÁVEIS HORA 2 - SE NÃO DEFINIDAS, ATRIBUIR ZERO
 $hora2_1 = isset($_POST["hora2_1"]) ? $_POST["hora2_1"] : '00:00:00';
 $hora2_2 = isset($_POST["hora2_2"]) ? $_POST["hora2_2"] : '00:00:00';
 $hora2_3 = isset($_POST["hora2_3"]) ? $_POST["hora2_3"] : '00:00:00';
@@ -31,6 +33,7 @@ $hora2_10 = isset($_POST["hora2_10"]) ? $_POST["hora2_10"] : '00:00:00';
 $hora2_11 = isset($_POST["hora2_11"]) ? $_POST["hora2_11"] : '00:00:00';
 $hora2_12 = isset($_POST["hora2_12"]) ? $_POST["hora2_12"] : '00:00:00';
 
+// VARIÁVEIS HORA 3 - SE NÃO DEFINIDAS, ATRIBUIR ZERO
 $hora3_1 = isset($_POST["hora3_1"]) ? $_POST["hora3_1"] : '00:00:00';
 $hora3_2 = isset($_POST["hora3_2"]) ? $_POST["hora3_2"] : '00:00:00';
 $hora3_3 = isset($_POST["hora3_3"]) ? $_POST["hora3_3"] : '00:00:00';
@@ -44,6 +47,7 @@ $hora3_10 = isset($_POST["hora3_10"]) ? $_POST["hora3_10"] : '00:00:00';
 $hora3_11 = isset($_POST["hora3_11"]) ? $_POST["hora3_11"] : '00:00:00';
 $hora3_12 = isset($_POST["hora3_12"]) ? $_POST["hora3_12"] : '00:00:00';
 
+// VARIÁVEIS HORA 4
 $hora4_1 = $_POST["hora4_1"];
 $hora4_2 = $_POST["hora4_2"];
 $hora4_3 = $_POST["hora4_3"];
@@ -57,9 +61,11 @@ $hora4_10 = $_POST["hora4_10"];
 $hora4_11 = $_POST["hora4_11"];
 $hora4_12 = $_POST["hora4_12"];
 
+// VARIÁVEIS ALO SAÚDE
 $alosaude_med_enf = $_POST["alosaude_med_enf"];
 $alosaude_odonto = $_POST["alosaude_odonto"];
 
+// SQLs PARA ATUALIZAR O HORÁRIO REAL DE DATA-HOJE ATÉ 31/12
 $sql1 = "UPDATE situacaoreal 
          SET `hora_1` = '$hora1_1', `hora_2` = '$hora2_1', `hora_3` = '$hora3_1', `hora_4` = '$hora4_1'             
          WHERE `data` >= '$data' AND `unidade` = '$id_unidade' AND `servico` = '1' AND `ocorrencia` = 0";
@@ -113,6 +119,11 @@ $sql13_14 = "UPDATE situacaoreal_alosaude
          WHERE `data` >= '$data' AND `unidade` = '$id_unidade' AND `ocorrencia` = 0";
 
 
+
+// SQLs: SE JÁ EXISTIR UM HORÁRIO PADRÃO NO DIA DE HOJE, FAZER UPDATE. SE NÃO EXISTIR, FAZER INSERT.
+
+
+
 if (($conn->query($sql1) === TRUE)
   &&($conn->query($sql2) === TRUE)
   &&($conn->query($sql3) === TRUE)
@@ -132,7 +143,5 @@ if (($conn->query($sql1) === TRUE)
     echo "Error: " . $sql1 . "<br>" . $conn->error;
     echo "Error: " . $sql2 . "<br>" . $conn->error;
 }
-
-// FALTA: inserir registro em situação padrão
 
 $conn->close(); 
