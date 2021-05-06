@@ -1,12 +1,12 @@
 <?php
 
 $title = 'SUS Connect';
-include 'header.php'; 
-include 'app/servicos/show_ondb.php';
+include 'template/header.php'; 
+include 'app/sql/select_real.php';
 
-// Se método POST, fazer incluir update.php
+// Se método POST, incluir upd_real.php
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-    include 'app/servicos/update_ondb.php';
+    include 'app/sql/upd_real.php';
 }
 ?>
 
@@ -14,7 +14,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 <?php if ( isset($_GET['message']) ) { ?>
     <p class="info_message"><?php echo $_GET['message'] ?></p>
 <?php } ?>
-
  
     <div class="container" style="max-width: 750px!important">
         
@@ -55,7 +54,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             </div>          
         </div> 
 
-        <!-- Se tiver algum resultado em show_ondb.php, exibir. Erro: ao abrir página, ainda não tem unidade/data -->
+        <!-- Se tiver algum resultado em select_real.php, exibir. Erro: ao abrir página, ainda não tem unidade/data -->
         <?php if (mysqli_num_rows($result) !== 0) { ?>
 
         <!-- Inicia formulário Update -->
@@ -392,4 +391,4 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     
 </script>
 
-<?php include 'footer.php' ?>
+<?php include 'template/footer.php' ?>

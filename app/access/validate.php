@@ -1,6 +1,6 @@
 <?php
  
-include("connect.php");
+include 'connect.php';
 session_start();
 
 if (empty($_POST['user_email'])) {
@@ -27,7 +27,7 @@ if (empty($_POST['user_email'])) {
         $user_info = $result->fetch_assoc();
         $_SESSION['logged'] = TRUE;
         $_SESSION['user_id'] = $user_info['id_usuario'];
-        header('location: index.php');
+        header('location: /susconnect/index.php');
     
     } else {
         header('location: login.php?login_error=Email e/ou senha não estão autorizados. Entre em contato com o administrador.');

@@ -1,7 +1,7 @@
 <?php
 
-include 'connect.php';
-include 'protect.php';
+include './app/access/connect.php';
+include './app/access/protect.php';
 protect();
 
 ?>
@@ -20,10 +20,7 @@ protect();
 
     <link rel="stylesheet" href="/susconnect/assets/css/style.css">
 
-    
-
-
-    
+       
     
 
 </head>
@@ -37,9 +34,9 @@ protect();
             </button>        
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    <a class="nav-link" href="insert.php">Novo Cadastro</a>
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Início</a>
+                    <a class="nav-link" href="alterar_padrao.php">Horário padrão</a>
+                    <a class="nav-link" href="app/access/logout.php">Logout</a>
                 </div>
             </div>
         </div>
