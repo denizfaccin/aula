@@ -4,7 +4,7 @@ $title = 'Horário padrão';
 include 'template/header.php';
 include 'app/sql/select_padrao.php';
 
-// Identifica se o formulário foi enviado e insere os dados
+// Identifica se o formulário foi enviado e insere os dados  -- VERIFICAR ESTA LÓGICA... SE POST, DEVE CARREGAR A PÁGINA NOVAMENTE???
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     include 'app/sql/upd_padrao_real.php';
 }
@@ -23,6 +23,7 @@ while ($row_servico = $result_servico->fetch_assoc()){
     $servico[$i] = $row_servico['nome_servico'];
     $i++;
 }
+
 ?>
 
 <div class="container" style="max-width: 750px!important">
@@ -51,13 +52,22 @@ while ($row_servico = $result_servico->fetch_assoc()){
     
     <div style="padding-top: 10px"></div>
         
-    <!-- Selecionar data / BLOQUEADO EM 'HOJE' PARA EVITAR INCONSISTÊNCIA -->
+    <!-- Selecionar data / BLOQUEADO EM 'HOJE' PARA EVITAR INCONSISTÊNCIA OU - ver bloco seguinte
     <div class="row">
         <div class="col-12">
             <span><strong>Alterar o horário padrão a partir de:</strong></span><span id="show_data"><?php echo date('d/m/Y');?></span>
             <input id="data" type="hidden" name="data" value="<?php echo date('d-m-Y');?>">
         </div>          
+    </div>  -->
+
+    <!-- data selecionável --> 
+    <div class="row">
+        <div class="col-12">
+            <span><strong>Alterar o horário padrão a partir de:</strong></span>
+                <input id="data" type="date" name="data">
+        </div>          
     </div> 
+
 
     <!-- Exibir informações de select_padrao.php, exibir. -->
     <?php if (mysqli_num_rows($padrao) !== 0) { ?>
