@@ -66,6 +66,7 @@ $alosaude_med_enf = $_POST["alosaude_med_enf"];
 $alosaude_odonto = $_POST["alosaude_odonto"];
 
 // SQLs PARA ATUALIZAR O HORÁRIO REAL DE $DATA ATÉ 31/12
+
 $sql1 = "UPDATE situacaoreal 
          SET `hora_1` = '$hora1_1', `hora_2` = '$hora2_1', `hora_3` = '$hora3_1', `hora_4` = '$hora4_1'             
          WHERE `data` >= '$data' AND `unidade` = '$id_unidade' AND `servico` = '1' AND `ocorrencia` = 0";
@@ -203,7 +204,7 @@ if (mysqli_num_rows($result_buscapadrao) > 0) {
     $insert_padrao = $conn->query($sql_insert_padrao);  
   }
 
-
+  
 if (($conn->query($sql1) === TRUE)
   &&($conn->query($sql2) === TRUE)
   &&($conn->query($sql3) === TRUE)
@@ -217,7 +218,7 @@ if (($conn->query($sql1) === TRUE)
   &&($conn->query($sql11) === TRUE)
   &&($conn->query($sql12) === TRUE)
   &&($conn->query($sql13_14) === TRUE)) {
-    //header('location: /susconnect/?message=Cadastro realizado com sucesso!');
+    header('location: /susconnect/?message=Cadastro realizado com sucesso!');
     die;
 }   else {    
     echo "Error: " . $sql1 . "<br>" . $conn->error;

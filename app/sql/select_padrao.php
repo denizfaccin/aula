@@ -3,13 +3,16 @@
 $id_unidade = isset($_GET['id_unidade']) ? (int) $_GET['id_unidade'] : 0;
 
 
-// data do último update --- REVISAR ESTE CÓDIGO --- DATA BLOQUEADA EM 'HOJE' PARA EVITAR INCONSISTÊNCIA
-$busca_datamax = "SELECT max(`data_inicial`) FROM `situacaopadrao` WHERE `unidade` = '$id_unidade' AND `servico` = '1'";
+// data do último update --- FALTA TESTAR
+$busca_datamax = "SELECT max(`data_inicial`) FROM `situacaopadrao` 
+                  WHERE `unidade` = '$id_unidade' 
+                  AND `servico` = '1' 
+                  AND `data_inicial` >= '2021-05-01' 
+                  AND `data_inicial` <= CURRENT_DATE ";
 $result_datamax = $conn->query($busca_datamax);
 $datamax_value = $result_datamax->fetch_assoc();
 $data_max = $datamax_value['max(`data_inicial`)'];
 
-//print_r($data_max);
 
 // serviços e horários da tabela situacaoreal
 $situacaopadrao = "SELECT `id_situacaopadrao`, `data_inicial`, `unidade`, `nome_unidade`, `nome_servico`, 
