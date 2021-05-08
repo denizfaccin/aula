@@ -185,6 +185,10 @@ if (mysqli_num_rows($result_buscapadrao) > 0) {
       SET `hora_1` = '$hora1_12', `hora_2` = '$hora2_12', `hora_3` = '$hora3_12', `hora_4` = '$hora4_12'             
       WHERE `data_inicial` = '$data' AND `unidade` = '$id_unidade' AND `servico` = '12' ";
       $update_padrao12 = $conn->query($sql_update_padrao12);
+
+    $sql_update_alo = "UPDATE situacaopadrao_alosaude SET `vaga_med_enf` = '$alosaude_med_enf', `vaga_odonto` = '$alosaude_odonto'
+                       WHERE `data_inicial` = '$data' AND `unidade` = '$id_unidade' ";
+                       $update_alo = $conn->query($sql_update_alo);
     
   } else {
     $sql_insert_padrao = "INSERT INTO situacaopadrao (`data_inicial`, `unidade`, `servico`, `hora_1`, `hora_2`, `hora_3`, `hora_4`) 
@@ -201,7 +205,11 @@ if (mysqli_num_rows($result_buscapadrao) > 0) {
         ('$data', '$id_unidade', '1', '$hora1_10', '$hora2_10', '$hora3_10', '$hora4_10'),
         ('$data', '$id_unidade', '1', '$hora1_11', '$hora2_11', '$hora3_11', '$hora4_11'),
         ('$data', '$id_unidade', '1', '$hora1_12', '$hora2_12', '$hora3_12', '$hora4_12')";
-    $insert_padrao = $conn->query($sql_insert_padrao);  
+    $insert_padrao = $conn->query($sql_insert_padrao); 
+    
+    $sql_insert_alo = "INSERT INTO situacaopadrao_alosaude (`data_inicial`, `unidade`, `vaga_med_enf`, `vaga_odonto`)
+                       VALUES ('$data', '$id_unidade', '$alosaude_med_enf', '$alosaude_odonto')";
+                       $insert_alo = $conn->query($sql_insert_alo);
   }
 
   
